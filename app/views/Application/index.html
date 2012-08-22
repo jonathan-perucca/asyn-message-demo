@@ -1,0 +1,71 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{set 'moreScripts'}
+<script src="@{'/public/javascripts/messageList.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+
+<div id="header">
+    <h1>Async Message Demo</h1>
+       <div id="options">
+           |
+           <a href="#" id="popMessage" >Write Message</a>
+           |
+       </div>
+</div>
+ <div id="content">
+	#{list items:listUsers, as:'user'}
+		<button class="messagesLists" id="${user.id}">${user.name}</button>
+	#{/list}<br><br>
+	<div id="result">
+		<form id="messageForm">
+			<table id="messageTable">
+				<thead>
+					<th>From</th>
+					<th>Subject</th>
+					<th>Resume Content</th>
+					<th>is New ?</th>
+					<th>Delete ?</th>
+				</thead>
+				<tbody>
+				</tbody>
+				<tfoot>
+			</table>
+		</form>
+	</div>
+	<br>
+	
+	<div id="message-popup">
+		<form id="createMessageForm">
+		<table>
+			<tr>
+				<td>To : </td>
+				<td>
+					<select id="userSelect">
+						#{list items:listUsers, as:'user'}
+							<option value="${user.id}">${user.name}</option>
+						#{/list}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Subject</td>
+				<td><input type="text" value="Subject ..." id="messageSubject" /></td>
+			</tr>
+			<tr>
+				<td>Message</td>
+				<td><textarea id="messageCorps">Your message ...</textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: right">
+					<input type="button" id="sendMessage" value="Envoyer" /> 
+				</td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</div>
+
+<div id="footer">
+	Created by <a href="http://github.com/jonathan-perucca">Jonathan Perucca</a>
+</div>

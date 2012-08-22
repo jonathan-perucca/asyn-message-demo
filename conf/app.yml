@@ -1,0 +1,26 @@
+
+User(jonat):
+    name: 'Jonathan'
+    birth: !!timestamp "2012-03-12"
+    isAdmin: true
+
+User(anth):
+    name: 'Anthony'
+    birth: !!timestamp "2012-04-14"
+    isAdmin: false
+    
+Message(anthtojo1): 
+    destinataire: [jonat]
+    expediteur: [anth]
+    subject: "Salut à toi"
+    content: "Premier message de test"
+    isNew: true
+    dateCreation: !!timestamp "2012-08-14"
+    
+Message(anthtojo2): 
+    destinataire: [jonat]
+    expediteur: [anth]
+    subject: "Resalut"
+    content: "Second test"
+    isNew: false
+    dateCreation: !!timestamp "2012-08-13"
