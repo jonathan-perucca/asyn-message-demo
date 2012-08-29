@@ -1,0 +1,15 @@
+Listening for transport dt_socket at address: 8000
+11:55:21,547 INFO  ~ Starting C:\dev\play-1.2.5\sampleTest
+11:55:23,352 WARN  ~ You're running Play! in DEV mode
+~
+~ Go to http://localhost:9000/@tests to run the tests
+~
+11:55:23,559 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:55:24,376 WARN  ~ Ignoring id (static params must be specified as key:'value',...)
+11:55:24,378 WARN  ~ Ignoring userId, id (static params must be specified as key:'value',...)
+11:55:24,379 WARN  ~ Ignoring userId, id (static params must be specified as key:'value',...)
+11:55:28,681 INFO  ~ Connected to jdbc:mysql://localhost/asynmessage?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
+11:55:30,463 INFO  ~ Application 'sampleTest' is now started !
+UserCounter is 2
+First User Name is Jonathan
+@KILLED

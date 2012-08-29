@@ -38,7 +38,6 @@ $(document).ready(function(){
 			$.jGrowl("You must display one member result before this action", {header: 'Information'});
 		}
 	});
-	
 });
 
 function initPopup(){
@@ -61,7 +60,13 @@ function sendMessage(userSelectId, messageSubject, messageCorps){
 	$.ajax({
 		type: 'POST',
 		url: 'message/',
-		data: {'userFrom': userFromId, 'userTo': userSelectId, 'subject': messageSubject, 'content': messageCorps},
+		data: {
+			'message.expediteur.id': userFromId, 
+			'message.destinataire.id': userSelectId, 
+			'message.subject': messageSubject, 
+			'message.content': messageCorps, 
+			'message.isNew': true
+		},
 		success: function() {
 			updateTable(userFromId);
 			$.jGrowl("Your message has been sent successfully", {header: 'Message'});
@@ -81,7 +86,7 @@ function updateTable(userId){
 				item.subject,
 				item.content,
 				item.isNew,
-				"<input type='button' name=" + item.id + " id=" + item.id +" value='X' onClick='deleteMessage(" + userId + ', ' + item.id + ', ' + currentRow++ + ")' />"
+				"<input type='button' name=" + item.id + " id=" + item.id +" value='X' onClick='deleteMessage(" + item.id + ', ' + currentRow++ + ")' />"
 			]);
 		});
 		opened = true;
@@ -89,19 +94,16 @@ function updateTable(userId){
 	});
 }
 
-function callBackDeleteMessage(userId, idMessage, idRow){
+function callBackDeleteMessage(idMessage, idRow){
 	$.ajax({
 		type: 'POST',
-		url: 'delete/' + userId + '/' + idMessage,
-		data: idMessage,
-		success: function() {
-			oTable.fnDeleteRow(idRow);
-			//updateTable(userId);
-		}
+		url: 'delete/',
+		data: {'message.id': idMessage},
 	});
+	oTable.fnDeleteRow(idRow);
 }
 
-function deleteMessage(userId, idMessage, idRow) {
+function deleteMessage(idMessage, idRow) {
 	$.confirm({
 		'title'     : 'Delete Confirmation',
 		'message'   : 'You are about to delete this item. <br />It cannot be restored at a later time! Continue?',
@@ -109,7 +111,7 @@ function deleteMessage(userId, idMessage, idRow) {
 			'Yes'   : {
 				'class' : 'blue',
 				'action': function(){
-					callBackDeleteMessage(userId, idMessage, idRow);
+					callBackDeleteMessage(idMessage, idRow);
 				}
 			},
 			'No'    : {

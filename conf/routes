@@ -9,7 +9,7 @@ GET		/show/{id}								Application.show(id)
 
 POST	/message/								Application.send
 
-POST	/delete/{userId}/{id}							Application.delete(userId, id)
+POST	/delete/								Application.delete
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

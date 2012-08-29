@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Message;
 import models.User;
+import play.db.jpa.Transactional;
 import play.mvc.Controller;
 
 public class Application extends Controller {
@@ -13,15 +14,14 @@ public class Application extends Controller {
     	render(listUsers);
     }
 
-    public static void send(Long userFrom, Long userTo, String subject, String content){
-    	Message.send(userFrom, userTo, subject, content);
-    	show(userFrom);
+    public static void send(Message message){
+    	Message.send(message);
+    	show(message.expediteur.id);
     }
     
-    public static void delete(Long userId, Long id){
-    	Message message = Message.findById(id);
-    	message.delete();
-//    	show(userId);
+    public static void delete(Message message){
+    	Message attached = Message.findById(message.id);
+    	attached.delete();
     }
     
     public static void show(Long id){
